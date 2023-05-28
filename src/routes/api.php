@@ -14,10 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::post('register', [\App\Http\Controllers\AuthController::class, 'register']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 //Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
 
-Route::apiResource('tasks', \App\Http\Controllers\TaskController::class);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('tasks', \App\Http\Controllers\TaskController::class);
+});
