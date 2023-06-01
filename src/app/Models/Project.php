@@ -27,6 +27,11 @@ class Project extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function members()
+    {
+        return $this->belongsToMany(User::class, Member::class);
+    }
+
     public static function booted()
     {
         static::addGlobalScope('creator', function (Builder $builder) {
