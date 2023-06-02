@@ -32,10 +32,11 @@ class Project extends Model
         return $this->belongsToMany(User::class, Member::class);
     }
 
-    public static function booted()
-    {
-        static::addGlobalScope('creator', function (Builder $builder) {
-            $builder->where('creator_id', Auth::id());
-        });
-    }
+#   Use policy instead of global scope
+//    public static function booted()
+//    {
+//        static::addGlobalScope('creator', function (Builder $builder) {
+//            $builder->where('creator_id', Auth::id());
+//        });
+//    }
 }
