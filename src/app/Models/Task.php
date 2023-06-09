@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -50,6 +51,15 @@ class Task extends Model
     {
         $query->where('due_at', '>=', $fromDate)
             ->where('due_at', '<=', $toDate);
+    }
+
+    public function scopeDUe(Builder $query, string $filter)
+    {
+        if ($filter === 'today') {
+            $query->where('due_at', '=', Carbon::today()->toDateString());
+        } elseif ($filter === 'past') {
+            $query->where('due_at', '<', Carbon::today()->toDateString());
+        }
     }
 
     protected static function booted()
