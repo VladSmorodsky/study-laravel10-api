@@ -1,6 +1,14 @@
 # udemy-laravel10-rest-api
 Project for learning Laravel API basics from Udemy 
 
+Study project covers next topics:
+- creating model and migration
+- authentication with Sanctum
+- authorisation with Policies
+- polymorphic relations
+- nested resources
+- filtering by query scope
+
 # How to
 - To build the project, execute:
 ```docker-compose up --build -d```
